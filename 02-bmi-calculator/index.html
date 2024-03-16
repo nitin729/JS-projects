@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <main>
+      <form id="bmiForm">
+        <div>
+          <label for="height">Height in cms</label>
+          <input type="text" id="height" />
+        </div>
+        <div>
+          <label for="weight">Weight in cms</label>
+          <input type="text" id="weight" />
+        </div>
+        <button type="submit">Calculate BMI</button>
+      </form>
+      <span id="output"></span>
+    </main>
+
+    <script>
+      bmiForm.addEventListener("submit", function calculateBMI(event) {
+        event.preventDefault();
+
+        const height = parseInt(document.getElementById("height").value);
+        const weight = parseInt(document.getElementById("weight").value);
+        const bmiForm = document.getElementById("bmiForm");
+        const output = document.getElementById("output");
+        let bmi;
+        if (height === "" || height < 0 || isNaN(height)) {
+          alert("Invalid Height");
+          return;
+        }
+        if (weight === "" || weight < 0 || isNaN(weight)) {
+          alert("Invalid Weight");
+          return;
+        }
+
+        bmi = ((weight / (height * height)) * 10000).toFixed(2);
+        output.innerText = `Your BMI is ${bmi}`;
+        bmi = null;
+      });
+    </script>
+  </body>
+</html>
